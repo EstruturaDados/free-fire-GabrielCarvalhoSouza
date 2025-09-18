@@ -11,6 +11,7 @@ void exibirMenu();
 void inserirItem();
 void removerItem();
 void listarItens();
+void buscaBinariaPorNome();
 
 int main() {
     // Menu principal com opções:
@@ -41,7 +42,7 @@ int main() {
                 listarItens();
                 break;
             case 4:
-                // Ordenar itens por critério
+                buscaBinariaPorNome();
                 break;
             case 5:
                 // Realizar busca binária por nome
@@ -87,8 +88,8 @@ void exibirMenu() {
     printf("1 - Adicionar um item\n");
     printf("2 - Remover um item\n");
     printf("3 - Listar todos os itens\n");
-    printf("4 - Ordenar os itens por criterio (nome, tipo, prioridade)\n");
-    printf("5 - Realizar busca binaria por nome\n");
+    printf("4 - Realizar busca binaria por nome\n");
+    printf("5 - Ordenar os itens por criterio (nome, tipo, prioridade)\n");
     printf("0 - Sair\n");
     printf("------------------------\n");
 }
@@ -172,3 +173,20 @@ void listarItens() {
 // Realiza busca binária por nome, desde que a mochila esteja ordenada por nome.
 // Se encontrar, exibe os dados do item buscado.
 // Caso contrário, informa que não encontrou o item.
+void buscaBinariaPorNome() {
+    char nome[50];
+    printf("Digite o nome do item a ser encontrado: ");
+    fgets(nome, sizeof(nome), stdin);
+    nome[strcspn(nome, "\n")] = 0;
+
+    for(int i = 0; i < numItens; i++) {
+        if (strcmp(mochila[i].nome, nome) == 0) {
+            printf("Item encontrado:\n");
+            printf("Nome: %s\n", mochila[i].nome);
+            printf("Tipo: %s\n", mochila[i].tipo);
+            printf("Quantidade: %d\n", mochila[i].quantidade);
+            return;
+        }
+    }
+    printf("Item nao encontrado!\n");
+}
