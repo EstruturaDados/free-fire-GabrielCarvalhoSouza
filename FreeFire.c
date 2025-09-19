@@ -198,40 +198,49 @@ void menuDeOrdenacao() {
 // - Por tipo (ordem alfabética)
 // - Por prioridade (da mais alta para a mais baixa)
 void insertionSortPorNome() {
+    int comparacoes = 0;
     for (int i = 1; i < numItens; i++) {
         Item chave = mochila[i];
         int j = i - 1;
         while (j >= 0 && strcmp(mochila[j].nome, chave.nome) > 0) {
             mochila[j + 1] = mochila[j];
             j--;
+            comparacoes++;
         }
         mochila[j + 1] = chave;
     }
     ordenadaPorNome = true;
+    printf("Ordenacao por nome concluida com %d comparacoes.\n", comparacoes);
 }
 
 void insertionSortPorTipo() {
+    int comparacoes = 0;
     for (int i = 1; i < numItens; i++) {
         Item chave = mochila[i];
         int j = i - 1;
         while (j >= 0 && strcmp(mochila[j].tipo, chave.tipo) > 0) {
             mochila[j + 1] = mochila[j];
             j--;
+            comparacoes++;
         }
         mochila[j + 1] = chave;
     }
+    printf("Ordenacao por tipo concluida com %d comparacoes.\n", comparacoes);
 }
 
 void insertionSortPorPrioridade() {
+    int comparacoes = 0;
     for (int i = 1; i < numItens; i++) {
         Item chave = mochila[i];
         int j = i - 1;
         while (j >= 0 && mochila[j].prioridade < chave.prioridade) {
             mochila[j + 1] = mochila[j];
             j--;
+            comparacoes++;
         }
         mochila[j + 1] = chave;
     }
+    printf("Ordenacao por prioridade concluida com %d comparacoes.\n", comparacoes);
 }
 
 // buscaBinariaPorNome():
